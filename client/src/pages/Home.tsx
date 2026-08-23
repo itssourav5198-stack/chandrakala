@@ -305,23 +305,6 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section className="video-section">
-          <div className="video-grid">
-            <motion.div className="video-copy" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }} variants={reveal} transition={{ duration: 0.55 }}>
-              <p className="eyebrow light-eyebrow"><span>05</span> Videos & performances</p>
-              <h2>Watch the<br /><em>rhythm unfold.</em></h2>
-              <p>From rehearsal floor to festival stage, this is where the academy’s training meets the spotlight.</p>
-              <button className="text-arrow light-arrow" onClick={() => setReelOpen(true)}>Open performance archive <ArrowRight size={18} /></button>
-            </motion.div>
-            <motion.button className="featured-reel" onClick={() => setReelOpen(true)} initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.6 }} aria-label="Play featured performance reel">
-              <div className="reel-backdrop"><span /><span /><span /></div>
-              <div className="reel-glow" />
-              <div className="play-disc"><Play size={23} fill="currentColor" /></div>
-              <div className="reel-caption"><span>Featured performance</span><strong>Varnam: The Language of Longing</strong></div>
-              <div className="reel-duration"><Clock3 size={14} /> 03:42</div>
-            </motion.button>
-          </div>
-        </section>
 
         <section id="programs" className="section programs-section">
           <motion.div className="programs-heading" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={reveal} transition={{ duration: 0.55 }}>
