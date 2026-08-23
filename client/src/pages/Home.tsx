@@ -77,7 +77,7 @@ const instructors = [
     initials: "SB",
     note: "Hip Hop, Sattriya, Assamese Bihu & dance training",
     tone: "bg-[#B83A3A]",
-    bio: "Sancharu founded ChandraKala Dance School and leads training across Hip Hop, Sattriya, and Assamese Bihu. Replace this line with a short paragraph about their training background, years of experience, and teaching philosophy.",
+    bio: "Sancharu founded ChandraKala Dance School and leads training across Hip Hop, Sattriya, and Assamese Bihu.",
   },
   {
     name: "Dhiraj Nath",
@@ -85,7 +85,7 @@ const instructors = [
     initials: "DN",
     note: "Admissions, coordination & academy management",
     tone: "bg-[#2A4F55]",
-    bio: "Dhiraj oversees admissions, day-to-day coordination, and academy management at ChandraKala. Replace this line with a short paragraph about their background and role at the school.",
+    bio: "Dhiraj oversees admissions, day-to-day coordination, and academy management at ChandraKala.",
   },
   {
     name: "Sourav Maity",
@@ -93,7 +93,7 @@ const instructors = [
     initials: "SM",
     note: "Technology, website & digital operations",
     tone: "bg-[#B56D36]",
-    bio: "Sourav leads technology, the website, and digital operations for ChandraKala. Replace this line with a short paragraph about their background and role at the school.",
+    bio: "Sourav leads technology, the website, and digital operations for ChandraKala.",
   },
 ];
 
