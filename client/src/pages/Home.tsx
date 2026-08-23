@@ -29,6 +29,13 @@ import {
 } from "lucide-react";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const navItems = [
   ["Academy", "academy"],
@@ -70,6 +77,7 @@ const instructors = [
     initials: "SB",
     note: "Hip Hop, Sattriya, Assamese Bihu & dance training",
     tone: "bg-[#B83A3A]",
+    bio: "Sancharu founded ChandraKala Dance School and leads training across Hip Hop, Sattriya, and Assamese Bihu. Replace this line with a short paragraph about their training background, years of experience, and teaching philosophy.",
   },
   {
     name: "Dhiraj Nath",
@@ -77,6 +85,7 @@ const instructors = [
     initials: "DN",
     note: "Admissions, coordination & academy management",
     tone: "bg-[#2A4F55]",
+    bio: "Dhiraj oversees admissions, day-to-day coordination, and academy management at ChandraKala. Replace this line with a short paragraph about their background and role at the school.",
   },
   {
     name: "Sourav Maity",
@@ -84,6 +93,7 @@ const instructors = [
     initials: "SM",
     note: "Technology, website & digital operations",
     tone: "bg-[#B56D36]",
+    bio: "Sourav leads technology, the website, and digital operations for ChandraKala. Replace this line with a short paragraph about their background and role at the school.",
   },
 ];
 
@@ -110,6 +120,7 @@ export default function Home() {
   const [activeGallery, setActiveGallery] = useState("All");
   const [selectedCourse, setSelectedCourse] = useState("A course");
   const [reelOpen, setReelOpen] = useState(false);
+  const [selectedInstructor, setSelectedInstructor] = useState<(typeof instructors)[number] | null>(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
@@ -271,11 +282,26 @@ export default function Home() {
                 <div className={`instructor-monogram ${instructor.tone}`}>{instructor.initials}</div>
                 <div className="instructor-name"><span>0{index + 1}</span><h3>{instructor.name}</h3></div>
                 <div className="instructor-role"><strong>{instructor.role}</strong><p>{instructor.note}</p></div>
-                <button className="round-arrow" onClick={() => toast.info(`${instructor.name}'s bio can be added here.`)} aria-label={`Learn more about ${instructor.name}`}><ArrowUpRight size={18} /></button>
+                <button className="round-arrow" onClick={() => setSelectedInstructor(instructor)} aria-label={`Learn more about ${instructor.name}`}><ArrowUpRight size={18} /></button>
               </motion.article>
             ))}
           </div>
         </section>
+
+        <Dialog open={!!selectedInstructor} onOpenChange={(open) => { if (!open) setSelectedInstructor(null); }}>
+          <DialogContent className="sm:max-w-md">
+            {selectedInstructor ? (
+              <>
+                <DialogHeader>
+                  <div className={`instructor-monogram ${selectedInstructor.tone}`} style={{ marginBottom: "0.75rem" }}>{selectedInstructor.initials}</div>
+                  <DialogTitle>{selectedInstructor.name}</DialogTitle>
+                  <DialogDescription>{selectedInstructor.role}</DialogDescription>
+                </DialogHeader>
+                <p className="text-sm text-muted-foreground leading-relaxed">{selectedInstructor.bio}</p>
+              </>
+            ) : null}
+          </DialogContent>
+        </Dialog>
 
         <section id="gallery" className="section gallery-section">
           <motion.div className="gallery-heading" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={reveal} transition={{ duration: 0.55 }}>
@@ -305,6 +331,23 @@ export default function Home() {
           </motion.div>
         </section>
 
+        <section className="video-section">
+          <div className="video-grid">
+            <motion.div className="video-copy" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }} variants={reveal} transition={{ duration: 0.55 }}>
+              <p className="eyebrow light-eyebrow"><span>05</span> Videos & performances</p>
+              <h2>Watch the<br /><em>rhythm unfold.</em></h2>
+              <p>From rehearsal floor to festival stage, this is where the academy’s training meets the spotlight.</p>
+              <button className="text-arrow light-arrow" onClick={() => setReelOpen(true)}>Open performance archive <ArrowRight size={18} /></button>
+            </motion.div>
+            <motion.button className="featured-reel" onClick={() => setReelOpen(true)} initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.6 }} aria-label="Play featured performance reel">
+              <div className="reel-backdrop"><span /><span /><span /></div>
+              <div className="reel-glow" />
+              <div className="play-disc"><Play size={23} fill="currentColor" /></div>
+              <div className="reel-caption"><span>Featured performance</span><strong>Varnam: The Language of Longing</strong></div>
+              <div className="reel-duration"><Clock3 size={14} /> 03:42</div>
+            </motion.button>
+          </div>
+        </section>
 
         <section id="programs" className="section programs-section">
           <motion.div className="programs-heading" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={reveal} transition={{ duration: 0.55 }}>
