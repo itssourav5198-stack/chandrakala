@@ -1,8 +1,4 @@
-/**
- * ChandraKala Dance Academy — Temple Light Editorial
- * Design reminder: ceremonial typography, asymmetrical composition, pomegranate rhythm dots,
- * and concise choreographed motion. Every interaction should feel poised, warm, and purposeful.
- */
+
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import {
   ArrowRight,
